@@ -1,0 +1,21 @@
+.calendarContainer{
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  padding: 5px;
+  margin-top: 20px;
+
+  .empty{
+    width: 100%;
+    height: 30px;
+    &.isHour {
+      border-bottom: 1px solid #000;
+
+    }
+  }
+  .calendarItem {
+    background-color: #5E84FE;
+    border-radius: 15px;
+    padding: 5px;
+  }
+}
