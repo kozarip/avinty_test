@@ -12,6 +12,15 @@ const App = () => {
     <div className="App">
       <div className='appointmentContainer'>
         <h1>Please select a day!</h1>
+        <DatePicker
+          className='datePicker'
+          label="Date"
+          value={date}
+          onChange={(newDate: any) => {
+            setDate(newDate);
+          }}
+          renderInput={(params) => <TextField {...params} />}
+        />
         <Calendar
           date={date}
         />
