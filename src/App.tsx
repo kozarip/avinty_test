@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import { TextField } from '@mui/material';
+import { DatePicker } from '@mui/x-date-pickers';
+import Calendar from './components/calendar';
+import './styles/App.scss';
 
-function App() {
+const App = () => {
+
+  const [date, setDate] = useState(new Date())
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className='appointmentContainer'>
+        <h1>Please select a day!</h1>
+        <Calendar
+          date={date}
+        />
+      </div>
     </div>
   );
 }
