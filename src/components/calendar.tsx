@@ -56,7 +56,14 @@ const Calendar: React.FC<CalendarProps> = ({ date, appointments }) => {
   return (
     <div className='calendarContainer'>
       <div className='schedule'>
-        {/* <h5 style={{gridRow: "time-0800"}}>8:00</h5>
+        <h5 style={{gridRow: "time-0100"}}>1:00</h5>
+        <h5 style={{gridRow: "time-0200"}}>2:00</h5>
+        <h5 style={{gridRow: "time-0300"}}>3:00</h5>
+        <h5 style={{gridRow: "time-0400"}}>4:00</h5>
+        <h5 style={{gridRow: "time-0500"}}>5:00</h5>
+        <h5 style={{gridRow: "time-0600"}}>6:00</h5>
+        <h5 style={{gridRow: "time-0700"}}>7:00</h5>
+        <h5 style={{gridRow: "time-0800"}}>8:00</h5>
         <h5 style={{gridRow: "time-0900"}}>9:00</h5>
         <h5 style={{gridRow: "time-1000"}}>10:00</h5>
         <h5 style={{gridRow: "time-1100"}}>11:00</h5>
@@ -71,7 +78,7 @@ const Calendar: React.FC<CalendarProps> = ({ date, appointments }) => {
         <h5 style={{gridRow: "time-2000"}}>20:00</h5>
         <h5 style={{gridRow: "time-2100"}}>21:00</h5>
         <h5 style={{gridRow: "time-2200"}}>22:00</h5>
-        <h5 style={{gridRow: "time-2300"}}>23:00</h5> */}
+        <h5 style={{gridRow: "time-2300"}}>23:00</h5>
         {/* <h5 className='rowBorder' style={{gridRow: "time-0900"}}></h5> */}
         {renderAppointments()}
       </div>
