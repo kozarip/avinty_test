@@ -8,7 +8,7 @@ import './styles/App.scss';
 import { AppointmentType, durationType } from './utils/types';
 
 const App = () => {
-  const [date, setDate] = useState(new Date("2021-07-26"))
+  const [date, setDate] = useState(new Date())
   const [currentAppointments, setCurrentAppointments] = useState<AppointmentType[] | []>([])
 
   useEffect(() => {
