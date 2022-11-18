@@ -7,3 +7,8 @@ export type AppointmentType = {
   location?: string | undefined
   registered?: boolean | undefined
 }
+
+export type durationType = {
+  days: number
+  date: string
+}

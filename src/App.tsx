@@ -5,14 +5,16 @@ import Calendar from './components/calendar';
 import appointments from './assets/avinty_front_end_resource.json';
 import moment from 'moment';
 import './styles/App.scss';
-import { AppointmentType } from './utils/types';
+import { AppointmentType, durationType } from './utils/types';
 
 const App = () => {
   const [date, setDate] = useState(new Date("2021-07-26"))
   const [currentAppointments, setCurrentAppointments] = useState<AppointmentType[] | []>([])
 
   useEffect(() => {
-    setCurrentAppointments(selectCurrentAppointments(date));
+    const closestDate = getClosestDate()
+    setDate(closestDate)
+    setCurrentAppointments(selectCurrentAppointments(closestDate));
   }, [])
 
   const selectCurrentAppointments = (selectedDate: any) => {
@@ -20,6 +22,20 @@ const App = () => {
       moment(appointment.start).format("YYYY-MM-DD") === moment(selectedDate).format("YYYY-MM-DD")
       || moment(appointment.end).format("YYYY-MM-DD") === moment(selectedDate).format("YYYY-MM-DD")
     ))
+  }
+
+  const getClosestDate = () => {
+    const today = moment(new Date())
+    let minDurationDate = ""
+    let minDuration = moment.duration(today.diff(moment(appointments.events[0].start))).asDays()
+    appointments.events.forEach((appointment: AppointmentType) => {
+      var duration = moment.duration(today.diff(moment(appointment.start))).asDays();
+      if (duration < minDuration) {
+        minDuration = duration
+        minDurationDate = appointment.start
+      }
+    });
+    return new Date(minDurationDate)
   }
 
   return (

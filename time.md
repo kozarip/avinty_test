@@ -28,3 +28,6 @@
 * show weather data
 * handle midnight events
 * colors
+* hours
+* datePicker use closest date
+* datePicker use closest date
