@@ -26,3 +26,5 @@
 * get current position coordinates and weather data
 * show weather data
 * show weather data
+* handle midnight events
+* colors
