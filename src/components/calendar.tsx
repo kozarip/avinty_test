@@ -1,10 +1,11 @@
 /* eslint-disable no-loop-func */
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
-import { AppointmentType, ConvertedAppointmentType } from '../utils/types';
+import { AppointmentType } from '../utils/types';
 import "./calendar.scss"
 import { Modal, Button } from '@mui/material';
 import AppointmentDetails from './appointmentDetails';
+import { colors } from '../utils/theme';
 
 type CalendarProps = {
   date: any
@@ -15,14 +16,11 @@ const Calendar: React.FC<CalendarProps> = ({ date, appointments }) => {
   const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false)
   const [selectedAppointment, setSelectedAppointment] = useState<AppointmentType>(appointments[0])
 
-  useEffect(() => {
-    console.log(appointments)
-  }, [appointments])
-
   const renderAppointments = () => {
     return appointments.map((appointment: AppointmentType, i) => {
       let start = moment(appointment.start).format("HHmm")
       let end = moment(appointment.end).format("HHmm")
+      //handle midnight events
       if (parseInt(moment(appointment.start).format("DD")) < parseInt(moment(appointment.end).format("DD"))) {
         if (parseInt(moment(appointment.start).format("DD")) === parseInt(moment(date).format("DD"))) {
           end = "2400"
@@ -30,11 +28,15 @@ const Calendar: React.FC<CalendarProps> = ({ date, appointments }) => {
           start = "0000"
         }
       }
+
       return (
         <div
           className='calendarItem'
           key={appointment.id}
-          style={{ gridRow: `time-${start} / time-${end}` }}
+          style={{
+            gridRow: `time-${start} / time-${end}`,
+            backgroundColor: colors[appointment.color]
+          }}
           onClick={() => handleClickOnAppointment(appointment)}
         >
           <span>
