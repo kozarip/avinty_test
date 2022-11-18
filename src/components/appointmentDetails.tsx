@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import { AppointmentType } from '../utils/types';
 import moment from 'moment';
-import { getCoordinatesByCity, getWeatherByCoordinates } from '../utils/utils';
 import { WEATHER_API_KEY } from '../utils/constants';
 
 const style = {
