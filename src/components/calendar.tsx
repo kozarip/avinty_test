@@ -21,8 +21,15 @@ const Calendar: React.FC<CalendarProps> = ({ date, appointments }) => {
 
   const renderAppointments = () => {
     return appointments.map((appointment: AppointmentType, i) => {
-      const start = moment(appointment.start).format("HHmm")
-      const end = moment(appointment.end).format("HHmm")
+      let start = moment(appointment.start).format("HHmm")
+      let end = moment(appointment.end).format("HHmm")
+      if (parseInt(moment(appointment.start).format("DD")) < parseInt(moment(appointment.end).format("DD"))) {
+        if (parseInt(moment(appointment.start).format("DD")) === parseInt(moment(date).format("DD"))) {
+          end = "2400"
+        } else {
+          start = "0000"
+        }
+      }
       return (
         <div
           className='calendarItem'
