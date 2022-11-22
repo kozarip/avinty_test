@@ -16,6 +16,7 @@ const Calendar: React.FC<CalendarProps> = ({ date, appointments }) => {
   const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false)
   const [selectedAppointment, setSelectedAppointment] = useState<AppointmentType>(appointments[0])
 
+
   const renderAppointments = () => {
     return appointments.map((appointment: AppointmentType, i) => {
       let start = moment(appointment.start).format("HHmm")
@@ -29,9 +30,31 @@ const Calendar: React.FC<CalendarProps> = ({ date, appointments }) => {
         }
       }
 
+      //find and count same time appointments
+      const sameTime = appointments.filter((other: AppointmentType) => {
+        if (appointment.id === other.id) return false;
+        const start = Date.parse(appointment.start)
+        const end = Date.parse(appointment.end)
+        const otherStart = Date.parse(other.start)
+        const otherEnd = Date.parse(other.end)
+        if (otherStart < start && start < otherEnd) return true;
+        if (otherStart < end && end < otherEnd) return true;
+        if (start < otherEnd && otherEnd < end) return true;
+        if (start < otherStart && otherStart < end) return true;
+        if(otherStart === start && end === otherEnd) return true
+        return false;
+      })
+      let timeCssClass = ""
+      if (sameTime.length === 0) {
+        timeCssClass = "fullWidth"
+      } else if (sameTime.length === 1) {
+        timeCssClass = "halfWidth"
+      } else if (sameTime.length === 3) {
+        timeCssClass = "thirdWidth"
+      }
       return (
         <div
-          className='calendarItem'
+          className={`calendarItem ${timeCssClass}`}
           key={appointment.id}
           style={{
             gridRow: `time-${start} / time-${end}`,

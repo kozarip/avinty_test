@@ -1,9 +1,11 @@
 .calendarContainer{
+    width: 100%;
+    max-width: 500px;
+    margin-top: 40px;
   .schedule {
     display: grid;
     grid-gap: 3px;
     grid-template-rows:
-      [tracks] auto
       [time-0000] 0.5fr
       [time-0015] 0.5fr
       [time-0030] 0.5fr
@@ -124,6 +126,15 @@
     h4{
       font-weight: normal;
       text-align: center;
+    }
+    &.fullWidth {
+      grid-column: auto / span 4;
+    }
+    &.halfWidth {
+      grid-column: auto / span 2;
+    }
+    &.thirdWidth {
+      
     }
   }
 }
