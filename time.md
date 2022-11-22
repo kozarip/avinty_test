@@ -34,3 +34,6 @@
 * appointment's widths
 * appointment's widths
 * calendar show hours
+* order components
+* appointment details design
+* appointment details weather icon
