@@ -62,7 +62,6 @@ const AppointmentDetails: React.FC<AppointmentProps> = ({ appointment }) => {
     <Box
       sx={style}
     >
-      {appointment.title && <h3>{appointment.title}</h3>}
       <div className="appointmentDetails">
         <div>
           <div>
@@ -78,11 +77,11 @@ const AppointmentDetails: React.FC<AppointmentProps> = ({ appointment }) => {
             alt={weather.weather[0].description}
             title={weather.weather[0].description}
             src={`http://openweathermap.org/img/w/${weather.weather[0].icon}.png`}
-          />
+            />
           <div>{`${weather.main.temp} °C`}</div>
         </div>}
-
       </div>
+      {appointment.title && <h3>{appointment.title}</h3>}
     </Box>
   );
 };
