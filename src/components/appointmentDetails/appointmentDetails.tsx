@@ -23,7 +23,7 @@ type AppointmentProps = {
 const initWeather = {
   name: "",
   main: { temp: 0 },
-  weather: [{description: ""}]
+  weather: [{description: "", icon: ""}]
 }
 
 const AppointmentDetails: React.FC<AppointmentProps> = ({ appointment }) => {
@@ -64,16 +64,26 @@ const AppointmentDetails: React.FC<AppointmentProps> = ({ appointment }) => {
       sx={style}
     >
       {appointment.title && <h3>{appointment.title}</h3>}
-      <div>
-        {`${moment(appointment.start).format("HH:mm")} - ${moment(appointment.end).format("HH:mm")}`}
+      <div className="appointmentDetails">
+        <div>
+          <div>
+            {`${moment(appointment.start).format("HH:mm")} - ${moment(appointment.end).format("HH:mm")}`}
+          </div>
+          {appointment.location && <div>{appointment.location}</div>}
+        </div>
+        {weather && <div className='weatherBox'>
+          {isUseCurrentPosition &&
+            <div>(Event location is not available, we use your current position for weather)</div>
+          }
+          <img
+            alt={weather.weather[0].description}
+            title={weather.weather[0].description}
+            src={`http://openweathermap.org/img/w/${weather.weather[0].icon}.png`}
+          />
+          <div>{`${weather.main.temp} °C`}</div>
+        </div>}
+
       </div>
-      {appointment.location && <div>{appointment.location}</div>}
-      {weather && <>
-        <h4>Weather</h4>
-        <div>{isUseCurrentPosition && <span>(Event location is not available, we use your current position)</span>}</div>
-        <div>{`Temperature: ${weather.main.temp} °C`}</div>
-        <div>{`Weather: ${weather.weather[0].description}`}</div>
-      </>}
     </Box>
   );
 };
