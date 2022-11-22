@@ -52,7 +52,6 @@ const AppointmentDetails: React.FC<AppointmentProps> = ({ appointment }) => {
         await fetch(`https://api.openweathermap.org/data/2.5/weather/?lat=${lat}&lon=${lon}&units=metric&appid=${WEATHER_API_KEY}`)
         .then(res => res.json())
           .then(result => {
-          console.log(result)
           setWeather(result)
         });
       }

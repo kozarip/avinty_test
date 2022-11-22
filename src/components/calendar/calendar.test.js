@@ -1,15 +1,14 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import renderer from 'react-test-renderer';s
 import Calendar from './calendar';
-import appointments from './assets/avinty_front_end_resource.json';
+import { render, screen } from '@testing-library/react';
+import appointments from '../../assets/avinty_front_end_resource.json';
 
-it('renders welcome message', () => {
+it('render correct appointment', () => {
   render(<Calendar
-    appointments={appointments}
+    appointments={appointments.events}
     date={new Date("2021-07-27")}
   />);
   expect(
-    screen.getByText('Quo minus animus a se ipse dissidens secumque discordans gustare partem.'))
+    screen.getAllByText('Quo minus animus a se ipse dissidens secumque discordans gustare partem.')[0])
     .toBeInTheDocument();
 });
