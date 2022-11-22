@@ -50,8 +50,10 @@ const Calendar: React.FC<CalendarProps> = ({ date, appointments }) => {
         timeCssClass = "fullWidth"
       } else if (sameTime.length === 1) {
         timeCssClass = "halfWidth"
-      } else if (sameTime.length === 3) {
+      } else if (sameTime.length === 2) {
         timeCssClass = "thirdWidth"
+      } else if (sameTime.length === 2) {
+        timeCssClass = "quarteredWidth"
       }
       return (
         <div
