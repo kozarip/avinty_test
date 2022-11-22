@@ -53,34 +53,31 @@ const Calendar: React.FC<CalendarProps> = ({ date, appointments }) => {
     setSelectedAppointment(appointment)
   }
 
+  const convertIntoTwoDigits = (number: number) => {
+    return (number < 10) ? '0' + number.toString() : number.toString();
+  }
+
+  const renderHours = () => {
+    const html = []
+    for (let i = 1; i < 24; i++){
+      html.push(<h5 style={
+        { gridRow: `time-${convertIntoTwoDigits(i - 1)}00 / time-${convertIntoTwoDigits(i)}00` }
+      }>
+        {convertIntoTwoDigits(i-1)}:00
+      </h5>)
+    }
+    return html
+  }
+
   return (
     <div className='calendarContainer'>
       <div className='schedule'>
-        <h5 style={{gridRow: "time-0100"}}>1:00</h5>
-        <h5 style={{gridRow: "time-0200"}}>2:00</h5>
-        <h5 style={{gridRow: "time-0300"}}>3:00</h5>
-        <h5 style={{gridRow: "time-0400"}}>4:00</h5>
-        <h5 style={{gridRow: "time-0500"}}>5:00</h5>
-        <h5 style={{gridRow: "time-0600"}}>6:00</h5>
-        <h5 style={{gridRow: "time-0700"}}>7:00</h5>
-        <h5 style={{gridRow: "time-0800"}}>8:00</h5>
-        <h5 style={{gridRow: "time-0900"}}>9:00</h5>
-        <h5 style={{gridRow: "time-1000"}}>10:00</h5>
-        <h5 style={{gridRow: "time-1100"}}>11:00</h5>
-        <h5 style={{gridRow: "time-1200"}}>12:00</h5>
-        <h5 style={{gridRow: "time-1300"}}>13:00</h5>
-        <h5 style={{gridRow: "time-1400"}}>14:00</h5>
-        <h5 style={{gridRow: "time-1500"}}>15:00</h5>
-        <h5 style={{gridRow: "time-1600"}}>16:00</h5>
-        <h5 style={{gridRow: "time-1700"}}>17:00</h5>
-        <h5 style={{gridRow: "time-1800"}}>18:00</h5>
-        <h5 style={{gridRow: "time-1900"}}>19:00</h5>
-        <h5 style={{gridRow: "time-2000"}}>20:00</h5>
-        <h5 style={{gridRow: "time-2100"}}>21:00</h5>
-        <h5 style={{gridRow: "time-2200"}}>22:00</h5>
-        <h5 style={{gridRow: "time-2300"}}>23:00</h5>
-        {/* <h5 className='rowBorder' style={{gridRow: "time-0900"}}></h5> */}
-        {renderAppointments()}
+        {
+          <>
+            {renderHours()}
+            {renderAppointments()}
+          </>
+        }
       </div>
       <Modal
         open={isAppointmentModalOpen}
