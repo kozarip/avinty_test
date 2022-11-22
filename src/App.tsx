@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { TextField } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers';
-import Calendar from './components/calendar';
+import Calendar from './components/calendar/calendar';
 import appointments from './assets/avinty_front_end_resource.json';
 import moment from 'moment';
 import './styles/App.scss';

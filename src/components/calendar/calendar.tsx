@@ -1,11 +1,11 @@
 /* eslint-disable no-loop-func */
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
-import { AppointmentType } from '../utils/types';
+import { AppointmentType } from '../../utils/types';
 import "./calendar.scss"
 import { Modal, Button } from '@mui/material';
-import AppointmentDetails from './appointmentDetails';
-import { colors } from '../utils/theme';
+import AppointmentDetails from '../appointmentDetails/appointmentDetails';
+import { colors } from '../../utils/theme';
 
 type CalendarProps = {
   date: any
@@ -44,6 +44,7 @@ const Calendar: React.FC<CalendarProps> = ({ date, appointments }) => {
         if(otherStart === start && end === otherEnd) return true
         return false;
       })
+      //widths for appointments
       let timeCssClass = ""
       if (sameTime.length === 0) {
         timeCssClass = "fullWidth"
@@ -83,7 +84,7 @@ const Calendar: React.FC<CalendarProps> = ({ date, appointments }) => {
   const renderHours = () => {
     const html = []
     for (let i = 1; i < 24; i++){
-      html.push(<h5 style={
+      html.push(<h5 key={i} style={
         { gridRow: `time-${convertIntoTwoDigits(i - 1)}00 / time-${convertIntoTwoDigits(i)}00` }
       }>
         {convertIntoTwoDigits(i-1)}:00

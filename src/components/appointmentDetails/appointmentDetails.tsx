@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Typography } from '@mui/material';
-import { AppointmentType } from '../utils/types';
+import { AppointmentType } from '../../utils/types';
 import moment from 'moment';
-import { WEATHER_API_KEY } from '../utils/constants';
+import { WEATHER_API_KEY } from '../../utils/constants';
+import './appointmentDetails.scss'
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -50,7 +51,8 @@ const AppointmentDetails: React.FC<AppointmentProps> = ({ appointment }) => {
       if (lat && lon) {
         await fetch(`https://api.openweathermap.org/data/2.5/weather/?lat=${lat}&lon=${lon}&units=metric&appid=${WEATHER_API_KEY}`)
         .then(res => res.json())
-        .then(result => {
+          .then(result => {
+          console.log(result)
           setWeather(result)
         });
       }
@@ -68,7 +70,7 @@ const AppointmentDetails: React.FC<AppointmentProps> = ({ appointment }) => {
       {appointment.location && <div>{appointment.location}</div>}
       {weather && <>
         <h4>Weather</h4>
-        <div>{isUseCurrentPosition && <span>(Event location is not available, use your current position)</span>}</div>
+        <div>{isUseCurrentPosition && <span>(Event location is not available, we use your current position)</span>}</div>
         <div>{`Temperature: ${weather.main.temp} °C`}</div>
         <div>{`Weather: ${weather.weather[0].description}`}</div>
       </>}
