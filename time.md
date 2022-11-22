@@ -39,3 +39,4 @@
 * appointment details weather icon
 * first test
 * first test
+* layout fine tuning
