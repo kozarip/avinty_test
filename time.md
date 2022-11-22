@@ -31,3 +31,6 @@
 * hours
 * datePicker use closest date
 * datePicker use closest date
+* appointment's widths
+* appointment's widths
+* calendar show hours
